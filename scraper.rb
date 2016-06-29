@@ -4,6 +4,8 @@ require 'open-uri'
 class Scraper
   attr_reader :base_url, :url_path, :page
 
+  class NoA7sError < StandardError; end
+
   def initialize
     @base_url = ENV['BASE_URL'] || 'http://www.dslr-forum.de/'
     @url_path = ENV['URL_PATH'] || 'forumdisplay.php?f=109&order=desc&page=1'
@@ -15,7 +17,8 @@ class Scraper
     links.select! do |link|
       is_about_a7s?(link)
     end
-    links.map{|link| link_to_a7s(link) } unless links.empty?
+    fail NoA7sError, "Didn't find an a7s :(" if links.empty?
+    links.map{|link| link_to_a7s(link) }
   end
 
   private
@@ -36,7 +39,3 @@ class Scraper
     base_url + link['href']
   end
 end
-
-scraper = Scraper.new
-
-scraper.find_me_a_cheap_a7s_please
