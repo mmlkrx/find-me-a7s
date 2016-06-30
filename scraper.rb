@@ -32,7 +32,7 @@ class Scraper
   end
 
   def is_about_a7s?(link)
-    link.text.downcase.include? 'a7s'
+    link.text.downcase.include? '7s'
   end
 
   def link_to_a7s(link)
