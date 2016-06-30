@@ -1,14 +1,16 @@
-require './mail_template.rb'
-require './mailer.rb'
+require './notification.rb'
+require './notifier.rb'
 require './scraper.rb'
 
-scraper = Scraper.new
-mailer  = Mailer.new
+scraper  = Scraper.new
+notifier = Notifier.new(user: ENV['USER'], token: ENV['TOKEN'])
 
-links = scraper.find_me_a_cheap_a7s_please
+urls = scraper.find_me_a_cheap_a7s_please
 
-email_body = MailTemplate.get(links)
+notification = Notification.new(
+                 message: "Hey, I've found #{urls.count} url(s)",
+                 title:   'Sony a7s',
+                 url:     urls.first,
+               )
 
-mailer.email_body = email_body
-
-mailer.deliver
+notifier.notify(notification)

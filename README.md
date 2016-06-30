@@ -8,7 +8,7 @@ Have docker running and do:
 
 ```shell
 $ docker build . -t scraper:latest
-$ docker run -it -v $(pwd):/scraper scraper:latest /bin/sh
+$ docker run --rm -it -v $(pwd):/scraper -e "USER=" -e "TOKEN=" scraper:latest /bin/sh
 ```
 
 Once the container is running, start the script:

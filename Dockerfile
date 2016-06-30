@@ -6,7 +6,7 @@ RUN apk update && \
     apk add less && \
     rm -rf /var/cache/apk/*
 
-RUN gem install nokogiri pry mail
+RUN gem install nokogiri pry
 
 WORKDIR /scraper
 
