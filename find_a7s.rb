@@ -3,7 +3,7 @@ require './notifier.rb'
 require './scraper.rb'
 require './url_dump.rb'
 
-scraper  = Scraper.new
+scraper  = Scraper.new('http://www.dslr-forum.de/forumdisplay.php?f=109&order=desc&page=1')
 notifier = Notifier.new(user: ENV['USER'], token: ENV['TOKEN'])
 
 urls = scraper.find_me_a_cheap_a7s_please
