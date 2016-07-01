@@ -8,7 +8,9 @@ notifier = Notifier.new(user: ENV['USER'], token: ENV['TOKEN'])
 
 urls = scraper.find_me_a_cheap_a7s_please
 
-urls.each { |url| UrlDump.dump(url) }
+exit if urls.map { |url| UrlDump.find(url) } == urls
+
+urls.each { |url| UrlDump.dump(url) unless UrlDump.find(url) }
 
 notification = Notification.new(
                  message: "Hey, I've found #{urls.count} url(s)",
