@@ -9,7 +9,7 @@ class UrlDump
     File.open('urls.dump', 'a+') do |file|
       file.lazy.select do |line|
         line.include?(url)
-      end.first
+      end.first[0..-2]
     end
   end
 end
