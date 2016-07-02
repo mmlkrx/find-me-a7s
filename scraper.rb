@@ -31,6 +31,6 @@ class Scraper
   end
 
   def link_to_a7s(link)
-    url.host + '/' + link['href']
+    url.scheme + '://' + url.host + '/' + link['href']
   end
 end
