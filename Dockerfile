@@ -10,4 +10,4 @@ RUN gem install nokogiri pry
 
 WORKDIR /scraper
 
-COPY ./scraper.rb /scraper
+COPY . ./
