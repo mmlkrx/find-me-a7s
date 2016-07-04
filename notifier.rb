@@ -1,8 +1,6 @@
 require "net/https"
 
 class Notifier
-  attr_reader :url, :req, :res
-
   def initialize(user:, token:)
     @url   = URI.parse("https://api.pushover.net/1/messages.json")
     @req   = Net::HTTP::Post.new(url.path)
@@ -27,5 +25,5 @@ class Notifier
 
   private
 
-  attr_reader :user, :token
+  attr_reader :user, :token, :url, :req, :res
 end
