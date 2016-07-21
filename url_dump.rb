@@ -10,7 +10,13 @@ class UrlDump
       url = file.lazy.select do |line|
               line.include?(url)
             end.first
-      url.nil? ? nil : url[0..-2]
+      url.nil? ? nil : strip_newline(url)
     end
+  end
+
+  private
+
+  def strip_newline(string)
+    string[0..-2]
   end
 end
